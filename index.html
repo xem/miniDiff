@@ -2,49 +2,130 @@
 
 Before:
 <br>
-<textarea id=a cols=99>var a = vertexAttrib1f(foo);</textarea>
+<textarea id=a cols=99>a=func1(foo)</textarea>
 
 <br>
 <br>
 
 After:
 <br>
-<textarea id=b cols=99>var a = vertexAttrib2f(foo);</textarea>
+<textarea id=b cols=99>a=func2(foo)a</textarea>
 
 <br>
 <br>
 
 Output:
-<pre id=c></pre>
+<pre id=p></pre>
 
 <script>
 
 
-// Take all the tokens (word or non-word) of string 1 (A) and mark them as removed (－ prefix, not ASCII)
+// Take all the tokens (word or non-word) of string 1 (A)
 A = a.value.split(/\b/);
-for(i in A){
-  A[i] = "－" + A[i];
-}
 console.log(A);
 
-// Take all the tokens (word or non-word) of string 2 (B) and mark them as added (＋ prefix, not ASCII)
+// Take all the tokens (word or non-word) of string 2 (B)
 B = b.value.split(/\b/);
-for(i in B){
-  B[i] = "＋" + B[i];
-}
 console.log(B);
 
-// TODO: Produce all the possible "permutations" of A's tokens and B's tokens: example if A and B have 2 tokens each: [A1, A2, B1, B2], [A1, B1, A2, B2], [A1, B1, B2, A2], [B1, A1, A2, B2], [B1, A1, B2, A2], [B1, B2, A1, A2]
-
-// TODO: Simplify the non-changing pairs of tokens (-x +x => x, or +x -x => x)
-
-// TODO: find the shortest simplified permutation and output it
-
-
-output = "";
+L = function(s, t){
+  // for all i and j, d[i,j] will hold the Levenshtein distance between
+  // the first i items of s and the first j items of t
+  // note that d has (m+1)*(n+1) values
+  // set each element in d to zero
+  d = [];
+  for(i=0;i<s.length+1;i++){
+    d[i] = [];
+    for(j=0;j<t.length+1;j++){
+      d[i][j] = 0;
+    }
+  }
+ 
+  // source prefixes can be transformed into empty string by
+  // dropping all characters
+  for(i=0;i<s.length+1;i++){
+    d[i][0] = i
+  }
+ 
+  // target prefixes can be reached from empty source prefix
+  // by inserting every character
+  for(j=0;j<t.length+1;j++){
+    d[0][j] = j;
+  }
+  
+  // Fll d with the cost of each possible edit
+  for(j=1;j<t.length+1;j++){
+    for(i=1;i<s.length+1;i++){
+      if(s[i] == t[j]){
+        cost = 0;
+      }
+      
+      else {
+        cost = 1;
+      }
+      
+      d[i][j] = Math.min(d[i-1][j] + 1,       // deletion
+                         d[i][j-1] + 1,       // insertion
+                         d[i-1][j-1] + cost)  // substitution
+    }
+  }
+  
+  console.dir(d);
+  
+  // Rewind D to get the list of edits
+  
+  x = s.length-1;
+  y = t.length-1;
+  edits = "";
+  cost = d[x][y];
+  
+  while(x >= 0 || y >= 0){
+    a = x ? d[x-1][y] : 99;    // left
+    b = (x && y) ? d[x-1][y-1] : 99;  // top-left
+    c = y ? d[x][y-1] : 99;    // top
+    
+    if(b <= a && b <= c){
+      x--;
+      y--;
+      if(x >= 0 && d[x][y] < cost){
+        cost = d[x][y];
+        edits = "<mark style=background:red>"+s[x+1]+"</mark><mark style=background:green>"+t[y+1]+"</mark>" + edits;
+      }
+      else {
+        edits = s[x+1] + edits;
+      }
+    }
+    
+    else if(a <= b && a <= c){
+      x--;
+      if(d[x][y] < cost){
+        cost = d[x][y];
+        edits = "<mark style=background:red>"+s[x+1]+"</mark>" + edits;
+      }
+      else {
+        edits = s[x+1] + edits;
+      }
+    }
+    
+    else{
+      y--;
+      if(d[x][y] < cost){
+        cost = d[x][y];
+        edits = "<mark style=background:green>"+t[y+1]+"</mark>" + edits;
+      }
+      else {
+        edits = t[y+1] + edits;
+      }
+    }
+  }
+  
+  return edits
+}
 
   
-c.innerHTML = output;
+W = L(a.value.split(/\b/),b.value.split(/\b/));
+
+p.innerHTML=W;
 
 
 </script>

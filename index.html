@@ -24,8 +24,8 @@ LevenshteinDistance = function(s, len_s, t, len_t){
   var cost;
 
   /* base case: empty strings */
-  if (len_s == 0) return [len_t, (t.slice(0,len_t) + '') != "" ? ["*add '"+t.slice(0,len_t).join("' and '")+"'*"] : []];
-  if (len_t == 0) return [len_s, (s.slice(0,len_s) + '') != "" ? ["*remove '"+s.slice(0,len_s).join("' and '")+"'*"] : []];
+  if (len_s == 0) return [len_t, (t.slice(0,len_t) + '') != "" ? ["*add '"+t.slice(0,len_t).join("")+"'*"] : []];
+  if (len_t == 0) return [len_s, (s.slice(0,len_s) + '') != "" ? ["*remove '"+s.slice(0,len_s).join("")+"'*"] : []];
 
   /* test if last characters of the strings match */
   if (s[len_s-1] == t[len_t-1]){

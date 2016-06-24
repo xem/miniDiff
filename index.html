@@ -2,130 +2,72 @@
 
 Before:
 <br>
-<textarea id=a cols=99>a=func1(foo)</textarea>
+<textarea id=a cols=99>var a=func1(foo)</textarea>
 
 <br>
 <br>
 
 After:
 <br>
-<textarea id=b cols=99>a=func2(foo)a</textarea>
+<textarea id=b cols=99>a=func2(foo);</textarea>
 
 <br>
 <br>
 
 Output:
-<pre id=p></pre>
+<pre id=c></pre>
 
 <script>
 
 
-// Take all the tokens (word or non-word) of string 1 (A)
-A = a.value.split(/\b/);
-console.log(A);
+LevenshteinDistance = function(s, len_s, t, len_t){
+  var cost;
 
-// Take all the tokens (word or non-word) of string 2 (B)
-B = b.value.split(/\b/);
-console.log(B);
+  /* base case: empty strings */
+  if (len_s == 0) return [len_t, (t.slice(0,len_t) + '') != "" ? ["*add '"+t.slice(0,len_t).join("' and '")+"'*"] : []];
+  if (len_t == 0) return [len_s, (s.slice(0,len_s) + '') != "" ? ["*remove '"+s.slice(0,len_s).join("' and '")+"'*"] : []];
 
-L = function(s, t){
-  // for all i and j, d[i,j] will hold the Levenshtein distance between
-  // the first i items of s and the first j items of t
-  // note that d has (m+1)*(n+1) values
-  // set each element in d to zero
-  d = [];
-  for(i=0;i<s.length+1;i++){
-    d[i] = [];
-    for(j=0;j<t.length+1;j++){
-      d[i][j] = 0;
-    }
+  /* test if last characters of the strings match */
+  if (s[len_s-1] == t[len_t-1]){
+    cost = 0;
   }
- 
-  // source prefixes can be transformed into empty string by
-  // dropping all characters
-  for(i=0;i<s.length+1;i++){
-    d[i][0] = i
-  }
- 
-  // target prefixes can be reached from empty source prefix
-  // by inserting every character
-  for(j=0;j<t.length+1;j++){
-    d[0][j] = j;
+  else{
+    cost = 1;
   }
   
-  // Fll d with the cost of each possible edit
-  for(j=1;j<t.length+1;j++){
-    for(i=1;i<s.length+1;i++){
-      if(s[i] == t[j]){
-        cost = 0;
-      }
-      
-      else {
-        cost = 1;
-      }
-      
-      d[i][j] = Math.min(d[i-1][j] + 1,       // deletion
-                         d[i][j-1] + 1,       // insertion
-                         d[i-1][j-1] + cost)  // substitution
+  /* return minimum of delete char from s, delete char from t, and delete char from both */
+  var O = LevenshteinDistance(s, len_s - 1, t, len_t);
+  var P = LevenshteinDistance(s, len_s, t, len_t - 1);
+  var Q = LevenshteinDistance(s, len_s - 1, t, len_t - 1);
+  
+  var R = O[0] + 1;
+  var S = P[0] + 1;
+  var T = Q[0] + cost;
+  
+  if(R <= S && R <= T){
+    if(s[len_s]){
+      O[1].push("*remove '"+s[len_s]+"' from s* ");
     }
+    return [R,O[1]]; 
   }
-  
-  console.dir(d);
-  
-  // Rewind D to get the list of edits
-  
-  x = s.length-1;
-  y = t.length-1;
-  edits = "";
-  cost = d[x][y];
-  
-  while(x >= 0 || y >= 0){
-    a = x ? d[x-1][y] : 99;    // left
-    b = (x && y) ? d[x-1][y-1] : 99;  // top-left
-    c = y ? d[x][y-1] : 99;    // top
-    
-    if(b <= a && b <= c){
-      x--;
-      y--;
-      if(x >= 0 && d[x][y] < cost){
-        cost = d[x][y];
-        edits = "<mark style=background:red>"+s[x+1]+"</mark><mark style=background:green>"+t[y+1]+"</mark>" + edits;
-      }
-      else {
-        edits = s[x+1] + edits;
-      }
+  else if(S <= R && S <= T){
+    if(t[len_t]){
+      P[1].push("*remove '"+t[len_t]+"' from t* ");
     }
-    
-    else if(a <= b && a <= c){
-      x--;
-      if(d[x][y] < cost){
-        cost = d[x][y];
-        edits = "<mark style=background:red>"+s[x+1]+"</mark>" + edits;
-      }
-      else {
-        edits = s[x+1] + edits;
-      }
-    }
-    
-    else{
-      y--;
-      if(d[x][y] < cost){
-        cost = d[x][y];
-        edits = "<mark style=background:green>"+t[y+1]+"</mark>" + edits;
-      }
-      else {
-        edits = t[y+1] + edits;
-      }
-    }
+    return [S,P[1]]; 
   }
-  
-  return edits
+  else{
+    if(s[len_s] != t[len_t]){
+      Q[1].push("*replace '"+[s[len_s]]+"' with '"+[t[len_t]]+"'* ");
+    }
+    return [T,Q[1]]; 
+  }
 }
 
-  
-W = L(a.value.split(/\b/),b.value.split(/\b/));
-
-p.innerHTML=W;
-
+A=a.value.split(/\b/);
+if(A[0]=="")A=[];
+B=b.value.split(/\b/);
+if(B[0]=="")B=[];
+c.innerHTML = LevenshteinDistance(A,A.length,B,B.length)[1].join("<br>");
 
 </script>

@@ -2,14 +2,14 @@
 
 Before:
 <br>
-<textarea id=a cols=99>var a=func1(foo)</textarea>
+<textarea id=a cols=99>var a = func1(foo)</textarea>
 
 <br>
 <br>
 
 After:
 <br>
-<textarea id=b cols=99>a=func2(foo);</textarea>
+<textarea id=b cols=99>a = func2(foo) + 1</textarea>
 
 <br>
 <br>
@@ -46,19 +46,27 @@ LevenshteinDistance = function(s, len_s, t, len_t){
   
   if(R <= S && R <= T){
     if(s[len_s]){
-      O[1].push("*remove '"+s[len_s]+"' from s* ");
+      O[1].push("*remove '"+s[len_s]+"' from s*");
     }
     return [R,O[1]]; 
   }
   else if(S <= R && S <= T){
     if(t[len_t]){
-      P[1].push("*remove '"+t[len_t]+"' from t* ");
+      P[1].push("*add '"+t[len_t]+"' to t*");
     }
     return [S,P[1]]; 
   }
   else{
     if(s[len_s] != t[len_t]){
-      Q[1].push("*replace '"+[s[len_s]]+"' with '"+[t[len_t]]+"'* ");
+      if(s[len_s] && t[len_t]){
+        Q[1].push("*replace '"+[s[len_s]]+"' with '"+[t[len_t]]+"'*");    
+      }
+      else if(t[len_t]) {
+        Q[1].push("*add '"+t[len_t]+"' to t*");
+      }
+      else {
+        Q[1].push("*remove '"+s[len_s]+"' from s*");
+      }
     }
     return [T,Q[1]]; 
   }

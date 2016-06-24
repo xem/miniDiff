@@ -24,8 +24,8 @@ LevenshteinDistance = function(s, len_s, t, len_t){
   var cost;
 
   /* base case: empty strings */
-  if (len_s == 0) return [len_t, ["*add '"+t.slice(0,len_t).join("' and '")+"'*"]];
-  if (len_t == 0) return [len_s, ["*remove '"+s.slice(0,len_s).join("' and '")+"'*"]];
+  if (len_s == 0) return [len_t, (t.slice(0,len_t) + '') != "" ? ["*add '"+t.slice(0,len_t).join("' and '")+"'*"] : []];
+  if (len_t == 0) return [len_s, (s.slice(0,len_s) + '') != "" ? ["*remove '"+s.slice(0,len_s).join("' and '")+"'*"] : []];
 
   /* test if last characters of the strings match */
   if (s[len_s-1] == t[len_t-1]){
@@ -45,11 +45,15 @@ LevenshteinDistance = function(s, len_s, t, len_t){
   var T = Q[0] + cost;
   
   if(R <= S && R <= T){
-    O[1].push("*remove '"+s[len_s]+"' from t* ");
+    if(s[len_s]){
+      O[1].push("*remove '"+s[len_s]+"' from s* ");
+    }
     return [R,O[1]]; 
   }
   else if(S <= R && S <= T){
-    P[1].push("*remove '"+t[len_t]+"' from t* ");
+    if(t[len_t]){
+      P[1].push("*remove '"+t[len_t]+"' from t* ");
+    }
     return [S,P[1]]; 
   }
   else{
@@ -61,7 +65,9 @@ LevenshteinDistance = function(s, len_s, t, len_t){
 }
 
 A=a.value.split(/\b/);
+if(A[0]=="")A=[];
 B=b.value.split(/\b/);
+if(B[0]=="")B=[];
 c.innerHTML = LevenshteinDistance(A,A.length,B,B.length)[1].join("<br>");
 
 </script>

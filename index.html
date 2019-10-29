@@ -1,7 +1,7 @@
 ﻿<body>
 <script>
 /*diff = function(seq1, seq2){
-  var N = seq1.length, M = seq2.length, MAX = N + M, furthestReaching = [], D, k, x, y, step, i, j, src = [], target = [], stepMap = [], dist = MAX;
+  var N = seq1.length, M = seq2.length, MAX = N + M, furthestReaching = [], D, k, x, y, step, src = [], target = [], stepMap = [], dist = MAX, a;
   for(;dist--;)stepMap[dist]=[];
   furthestReaching[MAX + 1] = 0;
   for(D = 0; D <= MAX && dist === -1; D++){
@@ -15,18 +15,13 @@
       if(x >= N && y >= M) dist = D;
     }
   }
-  for(i = N,j = M; i || j;){
-    switch(stepMap[i][j]){
-    case 0: src.unshift(seq1[i-1]); target.unshift(0); i -= 1; j -= 1; break;
-    case 1: src.unshift(seq1[i-1]); target.unshift(seq2[j-1]); i -= 1; j -= 1; break;
-    case 2: src.unshift(seq1[i-1]); target.unshift(-1); i -= 1; j -= 0; break;
-    case 3: src.unshift(-1); target.unshift(seq2[j-1]); i -= 0; j -= 1; break;
-    }
+  for(;N || M;){
+    a = stepMap[N][M]; src.unshift(a > 2 ? -1 : seq1[N-1]); target.unshift([0, step = seq2[M-1],-1,step][a]); a < 3 && N--; a != 2 && M --;    
   }
   return { src, target }
 };*/
 
-diff=(t,s,e,a,i,r,f,n,h,p=t.length,u=s.length,c=p+u,o=[],d=[],M=[],S=[],D=c)=>{for(;D--;)S[D]=[];for(o[c+1]=0,e=0;e<=c&&-1===D;e++)for(a=-e;a<=e&&-1===D;a+=2){for(a===-e||a!==e&&o[a-1+c]<o[a+1+c]?(i=o[a+1+c],f=3):(i=o[a-1+c]+1,f=2),r=i-a,S[i][r]=f;i<p&&r<u&&t[i]===s[r];)i++,r++,S[i][r]=0;o[a+c]=i,i>=p&&r>=u&&(D=e)}for(n=p,h=u;n||h;)switch(S[n][h]){case 0:d.unshift(t[n-1]),M.unshift(0),n-=1,h-=1;break;case 1:d.unshift(t[n-1]),M.unshift(s[h-1]),n-=1,h-=1;break;case 2:d.unshift(t[n-1]),M.unshift(-1),n-=1,h-=0;break;case 3:d.unshift(-1),M.unshift(s[h-1]),n-=0,h-=1}return{src:d,target:M}}
+diff=(f,r,t,n,o,e,h,g,s=f.length,a=r.length,c=s+a,l=[],d=[],v=[],b=[],j=c)=>{for(;j--;)b[j]=[];for(l[c+1]=0,t=0;t<=c&&-1===j;t++)for(n=-t;n<=t&&-1===j;n+=2){for(n===-t||n!==t&&l[n-1+c]<l[n+1+c]?(o=l[n+1+c],h=3):(o=l[n-1+c]+1,h=2),b[o][e=o-n]=h;o<s&&e<a&&f[o]===r[e];)b[++o][++e]=0;l[n+c]=o,o>=s&&e>=a&&(j=t)}for(;s||a;)d.unshift((g=b[s][a])>2?-1:f[s-1]),v.unshift([0,h=r[a-1],-1,h][g]),g<3&&s--,2!=g&&a--;return{d,v}}
 
 // Test
 console.log(diff([1, 2, 'a', 'b','e','g'], [1, 2, 'c', 'b','e','f',3]));

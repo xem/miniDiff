@@ -1,5 +1,35 @@
-﻿<body>
+﻿<h1>MiniDiff</h1>
+A 417b text differ
+<br>
+<br>
+<code style='color:#d1d1d1;background:#000000;'>diff<span style='color:#d2cd86; '>=</span><span style='color:#d2cd86; '>(</span>f<span style='color:#d2cd86; '>,</span>r<span style='color:#d2cd86; '>,</span>t<span style='color:#d2cd86; '>,</span>n<span style='color:#d2cd86; '>,</span>o<span style='color:#d2cd86; '>,</span>e<span style='color:#d2cd86; '>,</span>h<span style='color:#d2cd86; '>,</span>g<span style='color:#d2cd86; '>,</span>s<span style='color:#d2cd86; '>=</span>f<span style='color:#d2cd86; '>.</span><span style='color:#e66170; font-weight:bold; '>length</span><span style='color:#d2cd86; '>,</span>a<span style='color:#d2cd86; '>=</span>r<span style='color:#d2cd86; '>.</span><span style='color:#e66170; font-weight:bold; '>length</span><span style='color:#d2cd86; '>,</span>c<span style='color:#d2cd86; '>=</span>s<span style='color:#d2cd86; '>+</span>a<span style='color:#d2cd86; '>,</span>l<span style='color:#d2cd86; '>=</span><span style='color:#d2cd86; '>[</span><span style='color:#d2cd86; '>]</span><span style='color:#d2cd86; '>,</span>d<span style='color:#d2cd86; '>=</span><span style='color:#d2cd86; '>[</span><span style='color:#d2cd86; '>]</span><span style='color:#d2cd86; '>,</span>v<span style='color:#d2cd86; '>=</span><span style='color:#d2cd86; '>[</span><span style='color:#d2cd86; '>]</span><span style='color:#d2cd86; '>,</span>b<span style='color:#d2cd86; '>=</span><span style='color:#d2cd86; '>[</span><span style='color:#d2cd86; '>]</span><span style='color:#d2cd86; '>,</span>j<span style='color:#d2cd86; '>=</span>c<span style='color:#d2cd86; '>)</span><span style='color:#d2cd86; '>=</span><span style='color:#d2cd86; '>></span><span style='color:#b060b0; '>{</span><span style='color:#e66170; font-weight:bold; '>for</span><span style='color:#d2cd86; '>(</span><span style='color:#b060b0; '>;</span>j<span style='color:#d2cd86; '>--</span><span style='color:#b060b0; '>;</span><span style='color:#d2cd86; '>)</span>b<span style='color:#d2cd86; '>[</span>j<span style='color:#d2cd86; '>]</span><span style='color:#d2cd86; '>=</span><span style='color:#d2cd86; '>[</span><span style='color:#d2cd86; '>]</span><span style='color:#b060b0; '>;</span><span style='color:#e66170; font-weight:bold; '>for</span><span style='color:#d2cd86; '>(</span>l<span style='color:#d2cd86; '>[</span>c<span style='color:#d2cd86; '>+</span><span style='color:#008c00; '>1</span><span style='color:#d2cd86; '>]</span><span style='color:#d2cd86; '>=</span><span style='color:#008c00; '>0</span><span style='color:#d2cd86; '>,</span>t<span style='color:#d2cd86; '>=</span><span style='color:#008c00; '>0</span><span style='color:#b060b0; '>;</span>t<span style='color:#d2cd86; '>&lt;=</span>c<span style='color:#d2cd86; '>&amp;&amp;</span><span style='color:#d2cd86; '>-</span><span style='color:#008c00; '>1</span><span style='color:#d2cd86; '>===</span>j<span style='color:#b060b0; '>;</span>t<span style='color:#d2cd86; '>++</span><span style='color:#d2cd86; '>)</span><span style='color:#e66170; font-weight:bold; '>for</span><span style='color:#d2cd86; '>(</span>n<span style='color:#d2cd86; '>=</span><span style='color:#d2cd86; '>-</span>t<span style='color:#b060b0; '>;</span>n<span style='color:#d2cd86; '>&lt;=</span>t<span style='color:#d2cd86; '>&amp;&amp;</span><span style='color:#d2cd86; '>-</span><span style='color:#008c00; '>1</span><span style='color:#d2cd86; '>===</span>j<span style='color:#b060b0; '>;</span>n<span style='color:#d2cd86; '>+=</span><span style='color:#008c00; '>2</span><span style='color:#d2cd86; '>)</span><span style='color:#b060b0; '>{</span><span style='color:#e66170; font-weight:bold; '>for</span><span style='color:#d2cd86; '>(</span>n<span style='color:#d2cd86; '>===</span><span style='color:#d2cd86; '>-</span>t<span style='color:#d2cd86; '>||</span>n<span style='color:#d2cd86; '>!==</span>t<span style='color:#d2cd86; '>&amp;&amp;</span>l<span style='color:#d2cd86; '>[</span>n<span style='color:#d2cd86; '>-</span><span style='color:#008c00; '>1</span><span style='color:#d2cd86; '>+</span>c<span style='color:#d2cd86; '>]</span><span style='color:#d2cd86; '>&lt;</span>l<span style='color:#d2cd86; '>[</span>n<span style='color:#d2cd86; '>+</span><span style='color:#008c00; '>1</span><span style='color:#d2cd86; '>+</span>c<span style='color:#d2cd86; '>]</span><span style='color:#b060b0; '>?</span><span style='color:#d2cd86; '>(</span>o<span style='color:#d2cd86; '>=</span>l<span style='color:#d2cd86; '>[</span>n<span style='color:#d2cd86; '>+</span><span style='color:#008c00; '>1</span><span style='color:#d2cd86; '>+</span>c<span style='color:#d2cd86; '>]</span><span style='color:#d2cd86; '>,</span>h<span style='color:#d2cd86; '>=</span><span style='color:#008c00; '>3</span><span style='color:#d2cd86; '>)</span><span style='color:#b060b0; '>:</span><span style='color:#d2cd86; '>(</span>o<span style='color:#d2cd86; '>=</span>l<span style='color:#d2cd86; '>[</span>n<span style='color:#d2cd86; '>-</span><span style='color:#008c00; '>1</span><span style='color:#d2cd86; '>+</span>c<span style='color:#d2cd86; '>]</span><span style='color:#d2cd86; '>+</span><span style='color:#008c00; '>1</span><span style='color:#d2cd86; '>,</span>h<span style='color:#d2cd86; '>=</span><span style='color:#008c00; '>2</span><span style='color:#d2cd86; '>)</span><span style='color:#d2cd86; '>,</span>b<span style='color:#d2cd86; '>[</span>o<span style='color:#d2cd86; '>]</span><span style='color:#d2cd86; '>[</span>e<span style='color:#d2cd86; '>=</span>o<span style='color:#d2cd86; '>-</span>n<span style='color:#d2cd86; '>]</span><span style='color:#d2cd86; '>=</span>h<span style='color:#b060b0; '>;</span>o<span style='color:#d2cd86; '>&lt;</span>s<span style='color:#d2cd86; '>&amp;&amp;</span>e<span style='color:#d2cd86; '>&lt;</span>a<span style='color:#d2cd86; '>&amp;&amp;</span>f<span style='color:#d2cd86; '>[</span>o<span style='color:#d2cd86; '>]</span><span style='color:#d2cd86; '>===</span>r<span style='color:#d2cd86; '>[</span>e<span style='color:#d2cd86; '>]</span><span style='color:#b060b0; '>;</span><span style='color:#d2cd86; '>)</span>b<span style='color:#d2cd86; '>[</span><span style='color:#d2cd86; '>++</span>o<span style='color:#d2cd86; '>]</span><span style='color:#d2cd86; '>[</span><span style='color:#d2cd86; '>++</span>e<span style='color:#d2cd86; '>]</span><span style='color:#d2cd86; '>=</span><span style='color:#008c00; '>0</span><span style='color:#b060b0; '>;</span>l<span style='color:#d2cd86; '>[</span>n<span style='color:#d2cd86; '>+</span>c<span style='color:#d2cd86; '>]</span><span style='color:#d2cd86; '>=</span>o<span style='color:#d2cd86; '>,</span>o<span style='color:#d2cd86; '>>=</span>s<span style='color:#d2cd86; '>&amp;&amp;</span>e<span style='color:#d2cd86; '>>=</span>a<span style='color:#d2cd86; '>&amp;&amp;</span><span style='color:#d2cd86; '>(</span>j<span style='color:#d2cd86; '>=</span>t<span style='color:#d2cd86; '>)</span><span style='color:#b060b0; '>}</span><span style='color:#e66170; font-weight:bold; '>for</span><span style='color:#d2cd86; '>(</span><span style='color:#b060b0; '>;</span>s<span style='color:#d2cd86; '>||</span>a<span style='color:#b060b0; '>;</span><span style='color:#d2cd86; '>)</span>d<span style='color:#d2cd86; '>.</span><span style='color:#e66170; font-weight:bold; '>unshift</span><span style='color:#d2cd86; '>(</span><span style='color:#d2cd86; '>(</span>g<span style='color:#d2cd86; '>=</span>b<span style='color:#d2cd86; '>[</span>s<span style='color:#d2cd86; '>]</span><span style='color:#d2cd86; '>[</span>a<span style='color:#d2cd86; '>]</span><span style='color:#d2cd86; '>)</span><span style='color:#d2cd86; '>></span><span style='color:#008c00; '>2</span><span style='color:#b060b0; '>?</span><span style='color:#d2cd86; '>-</span><span style='color:#008c00; '>1</span><span style='color:#b060b0; '>:</span>f<span style='color:#d2cd86; '>[</span>s<span style='color:#d2cd86; '>-</span><span style='color:#008c00; '>1</span><span style='color:#d2cd86; '>]</span><span style='color:#d2cd86; '>)</span><span style='color:#d2cd86; '>,</span>v<span style='color:#d2cd86; '>.</span><span style='color:#e66170; font-weight:bold; '>unshift</span><span style='color:#d2cd86; '>(</span><span style='color:#d2cd86; '>[</span><span style='color:#008c00; '>0</span><span style='color:#d2cd86; '>,</span>h<span style='color:#d2cd86; '>=</span>r<span style='color:#d2cd86; '>[</span>a<span style='color:#d2cd86; '>-</span><span style='color:#008c00; '>1</span><span style='color:#d2cd86; '>]</span><span style='color:#d2cd86; '>,</span><span style='color:#d2cd86; '>-</span><span style='color:#008c00; '>1</span><span style='color:#d2cd86; '>,</span>h<span style='color:#d2cd86; '>]</span><span style='color:#d2cd86; '>[</span>g<span style='color:#d2cd86; '>]</span><span style='color:#d2cd86; '>)</span><span style='color:#d2cd86; '>,</span>g<span style='color:#d2cd86; '>&lt;</span><span style='color:#008c00; '>3</span><span style='color:#d2cd86; '>&amp;&amp;</span>s<span style='color:#d2cd86; '>--</span><span style='color:#d2cd86; '>,</span><span style='color:#008c00; '>2</span><span style='color:#d2cd86; '>!=</span>g<span style='color:#d2cd86; '>&amp;&amp;</span>a<span style='color:#d2cd86; '>--</span><span style='color:#b060b0; '>;</span><span style='color:#e66170; font-weight:bold; '>return</span><span style='color:#d2cd86; '>[</span>d<span style='color:#d2cd86; '>,</span>v<span style='color:#d2cd86; '>]</span><span style='color:#b060b0; '>}</span>
+</code>
+
+<br>
+<br>
+<h2>Demo</h2>
+
+<textarea id=A>1
+2
+a
+b
+c
+e
+g</textarea>
+<textarea id=B>1
+2
+c
+b
+e
+f
+3</textarea>
+<pre id=C></pre>
+
+
 <script>
+
+// Meyer's diff algorithm
+
 /*diff = function(seq1, seq2){
   var N = seq1.length, M = seq2.length, MAX = N + M, furthestReaching = [], D, k, x, y, step, src = [], target = [], stepMap = [], dist = MAX, a;
   for(;dist--;)stepMap[dist]=[];
@@ -18,11 +48,38 @@
   for(;N || M;){
     a = stepMap[N][M]; src.unshift(a > 2 ? -1 : seq1[N-1]); target.unshift([0, step = seq2[M-1],-1,step][a]); a < 3 && N--; a != 2 && M --;    
   }
-  return { src, target }
+  return [ src, target ]
 };*/
 
-diff=(f,r,t,n,o,e,h,g,s=f.length,a=r.length,c=s+a,l=[],d=[],v=[],b=[],j=c)=>{for(;j--;)b[j]=[];for(l[c+1]=0,t=0;t<=c&&-1===j;t++)for(n=-t;n<=t&&-1===j;n+=2){for(n===-t||n!==t&&l[n-1+c]<l[n+1+c]?(o=l[n+1+c],h=3):(o=l[n-1+c]+1,h=2),b[o][e=o-n]=h;o<s&&e<a&&f[o]===r[e];)b[++o][++e]=0;l[n+c]=o,o>=s&&e>=a&&(j=t)}for(;s||a;)d.unshift((g=b[s][a])>2?-1:f[s-1]),v.unshift([0,h=r[a-1],-1,h][g]),g<3&&s--,2!=g&&a--;return{d,v}}
+// Golfed Meyer's diff algorithm
 
-// Test
-console.log(diff([1, 2, 'a', 'b','e','g'], [1, 2, 'c', 'b','e','f',3]));
+diff=(f,r,t,n,o,e,h,g,s=f.length,a=r.length,c=s+a,l=[],d=[],v=[],b=[],j=c)=>{for(;j--;)b[j]=[];for(l[c+1]=0,t=0;t<=c&&-1===j;t++)for(n=-t;n<=t&&-1===j;n+=2){for(n===-t||n!==t&&l[n-1+c]<l[n+1+c]?(o=l[n+1+c],h=3):(o=l[n-1+c]+1,h=2),b[o][e=o-n]=h;o<s&&e<a&&f[o]===r[e];)b[++o][++e]=0;l[n+c]=o,o>=s&&e>=a&&(j=t)}for(;s||a;)d.unshift((g=b[s][a])>2?-1:f[s-1]),v.unshift([0,h=r[a-1],-1,h][g]),g<3&&s--,2!=g&&a--;return[d,v]}
+
+// UI
+onload = oninput = () => {
+  C.innerHTML = "";
+  a = A.value.split("\n");
+  b = B.value.split("\n");
+  c = diff(a,b);
+  for(i in c[0]){
+    if(c[1][i] == -1){
+      C.innerHTML+=`<div class=red>- ${c[0][i]}</div>`;
+    }
+    else if(c[0][i] == -1){
+      C.innerHTML+=`<div class=green>+ ${c[1][i]}</div>`;
+    }
+    else {
+      C.innerHTML+=`<div>&nbsp; ${c[0][i]}</div>`;
+    }
+  }
+}
 </script>
+
+<style>
+textarea { display: inline-block; width: 45%; height: 200px }
+pre { width: 90%; height: 200px; border: 1px solid; overflow: auto; }
+.green { background: #efe }
+.red { background: #fef }
+h1, h2 { margin: 5px 0; font-family: arial }
+code { display: block; width: 90%; padding: 5px; }
+</style>
